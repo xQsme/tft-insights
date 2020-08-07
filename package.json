@@ -1,0 +1,23 @@
+{
+    "name": "TFT-Insights",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "start": "node server.ts",
+        "dev": "nodemon server.ts"
+    },
+    "dependencies": {
+        "@types/express": "^4.17.7",
+        "@types/node": "^14.0.27",
+        "axios": "^0.19.2",
+        "body-parser": "^1.18.3",
+        "cors": "^2.8.5",
+        "express": "^4.16.3",
+        "nocache": "^2.1.0",
+        "nodemon": "^2.0.4",
+        "rootpath": "^0.1.2",
+        "ts-node": "^8.10.2",
+        "typescript": "^3.9.7",
+        "utils": "^0.3.1"
+    }
+}
