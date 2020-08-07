@@ -1,0 +1,214 @@
+$main: #D53C4E;
+$background: #222222;
+$secondarybg: #303030;;
+$text: #FFFFFF;
+
+*{
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+html{
+    height: 100%;
+    background-color: $background;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    margin: 0;
+    background-color: $background;
+    color: $text;
+    height: 100%;
+}
+
+#root{
+    height: 100%;
+}
+
+.App{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    align-items: center;
+}
+
+.app-container{
+    max-width: 640px;
+}
+
+.center{
+    text-align: center;
+}
+
+.note{
+    opacity: 0.8;
+    font-size: 14px;
+    font-weight: 150;
+}
+
+.btn-main{
+    background-color: $main !important;
+    display:block !important;
+    margin:0px auto !important;
+}
+
+.MuiTab-root{
+    color: $text !important;
+}
+
+.Mui-selected{
+    color: $main !important;
+}
+
+.MuiTabs-indicator{
+    background-color: $main !important;
+}
+
+.MuiTabs-root{
+    margin-bottom: 20px !important;
+}
+
+.MuiPaper-root{
+    background-color: $secondarybg !important;
+    .MuiTableCell-root, .MuiButtonBase-root, svg{
+        color: $text !important;
+    }
+}
+
+.lds-roller {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.lds-roller div {
+    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: $main;
+    margin: -4px 0 0 -4px;
+}
+.lds-roller div:nth-child(1) {
+    animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+    top: 63px;
+    left: 63px;
+}
+.lds-roller div:nth-child(2) {
+    animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+    top: 68px;
+    left: 56px;
+}
+.lds-roller div:nth-child(3) {
+    animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+    top: 71px;
+    left: 48px;
+}
+.lds-roller div:nth-child(4) {
+    animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+    top: 72px;
+    left: 40px;
+}
+.lds-roller div:nth-child(5) {
+    animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+    top: 71px;
+    left: 32px;
+}
+.lds-roller div:nth-child(6) {
+    animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+    top: 68px;
+    left: 24px;
+}
+.lds-roller div:nth-child(7) {
+    animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+    top: 63px;
+    left: 17px;
+}
+.lds-roller div:nth-child(8) {
+    animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+    top: 56px;
+    left: 12px;
+}
+
+@keyframes lds-roller {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.track-vertical {
+    top: 0;
+    bottom: 0;
+    right: 1px;
+    border-radius: 3px;
+  
+    .thumb-vertical {
+        position: relative;
+        display: block;
+        width: 100%;
+        cursor: pointer;
+        border-radius: 3px;
+        background-color: $main; // changed the color
+    }
+  
+  }
+  
+  .track-horizontal {
+    position: absolute;
+    height: 6px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    
+    .thumb-horizontal {
+        position: relative;
+        display: block;
+        height: 100%;
+        cursor: pointer;
+        border-radius: 3px;
+        background-color: $main; // changed the color
+    }
+  }
+  
+  .scrollbar{
+    div:first-of-type{
+        right: -1px !important;
+        margin: auto;
+    }
+  }
+  
+  .scrollbar:hover{
+    .track-horizontal{
+      opacity: 1 !important;
+    }
+    .track-vertical{
+      opacity: 1 !important;
+    }
+  }
