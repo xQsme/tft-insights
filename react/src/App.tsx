@@ -41,15 +41,28 @@ class App extends Component <{}, AppState> {
       this.setState({...response.data, requested: true});
     }).catch(error => {
       this.setState({error: true});
-      toast('❌ Request Limit Reached!', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      if(error && error.response && error.response.status === 403) {
+        toast('❌ API Key Expired!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        toast('❌ Request Limit Reached!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+
     });
   }
 

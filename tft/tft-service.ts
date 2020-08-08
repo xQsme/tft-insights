@@ -70,9 +70,9 @@ async function getUnits(serverNumber: number) {
                             if(!matchTopUnits.includes(unit)) {
                                 units[unit].top++;
                                 matchTopUnits.push(unit);
-                            }
-                            for(let a = 0; a < players[j].units[k].items.length; a++) {
-                                units[unit].items[players[j].units[k].items[a]] = units[unit].items[players[j].units[k].items[a]] ? units[unit].items[players[j].units[k].items[a]] + 1 : 1;
+                                for(let a = 0; a < players[j].units[k].items.length; a++) {
+                                    units[unit].items[players[j].units[k].items[a]] = units[unit].items[players[j].units[k].items[a]] ? units[unit].items[players[j].units[k].items[a]] + 1 : 1;
+                                }
                             }
                         //}
                     }
@@ -104,7 +104,12 @@ async function getUnits(serverNumber: number) {
             data: {units: unitsArray, totalMatches},
         }
     } catch (error) {
-        console.log(error.response);
+        if(error.response.data.status.status_code === 403) {
+            return {
+                code: 403,
+                data: 'Error',
+            }
+        }
         return {
             code: 400,
             data: 'Error',
