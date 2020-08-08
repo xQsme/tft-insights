@@ -53,7 +53,7 @@ class App extends Component <{}, AppState> {
   }
 
   handleChange = (stuff: any, item: number) => {
-    this.setState({value: item, requested: false});
+    this.setState({value: item, requested: false, error: false});
     this.requestUnits(item);
   }
 
