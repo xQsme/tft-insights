@@ -37,6 +37,7 @@ class App extends Component <{}, AppState> {
   requestUnits = (item: any) => {
     const { value } = this.state;
     axios.get(server + '/tft/units/' + (item ? item : value)).then(response => {
+      //console.log(response.data);
       this.setState({...response.data, requested: true});
     }).catch(error => {
       this.setState({error: true});
@@ -71,45 +72,44 @@ class App extends Component <{}, AppState> {
           renderThumbHorizontal={props => <div {...props} className="thumb-horizontal" />}
           renderThumbVertical={props => <div {...props} className="thumb-vertical" />}
         >
-        <div className="app-container">
-          <h3 className="center">TFT Insights</h3>
-          <Tabs
-            value={value}
-            onChange={this.handleChange}
-            indicatorColor="primary"
-            textColor="primary"
-            centered
-          >
-            <Tab label="EU" />
-            <Tab label="NA" />
-            <Tab label="KR" />
-          </Tabs>
-          {error ? (
-            <div className="full-width">
-              <Button className="btn-main" variant="contained" color="primary" onClick={() => {this.setState({error: false, requested: false}); this.requestUnits(undefined);}}>Retry Request</Button>
-              <p className="note">Request limit reached, please wait a bit before retrying.</p>
-            </div>
-          ) : (
-            <>
-              {!requested ? (
-                <div className="center"><div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
-              ) : (
-                <>
-                  <SpecialTable 
-                    rows={units} 
-                    headers={['Unit', '1st Place' , 'Top 4']}
-                    elements={['unit', 'win', 'top']}
-                    primaryKey={"Unit"}
-                    orderCol="1st Place"
-                    orderDir="desc"
-                    rowCount={15}/>
-                  <p className="note">Data recovered from {totalMatches} of the latest matches of the top Challenger players of the selected region.</p>
-                </>
-              )}
-            </>
-          )}
-
-        </div>
+          <div className="app-container">
+            <h3 className="center">TFT Insights</h3>
+            <Tabs
+              value={value}
+              onChange={this.handleChange}
+              indicatorColor="primary"
+              textColor="primary"
+              centered
+            >
+              <Tab label="EU" />
+              <Tab label="NA" />
+              <Tab label="KR" />
+            </Tabs>
+            {error ? (
+              <div className="full-width">
+                <Button className="btn-main" variant="contained" color="primary" onClick={() => {this.setState({error: false, requested: false}); this.requestUnits(undefined);}}>Retry Request</Button>
+                <p className="note">Request limit reached, please wait a bit before retrying.</p>
+              </div>
+            ) : (
+              <>
+                {!requested ? (
+                  <div className="center"><div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+                ) : (
+                  <>
+                    <SpecialTable 
+                      rows={units} 
+                      headers={['Unit', '1st Place' , 'Top 4', 'Items']}
+                      elements={['unit', 'win', 'top', 'items']}
+                      primaryKey={"Unit"}
+                      orderCol="1st Place"
+                      orderDir="desc"
+                      rowCount={15}/>
+                    <p className="note">Data recovered from {totalMatches} of the latest matches of the top Challenger players of the selected region.</p>
+                  </>
+                )}
+              </>
+            )}
+          </div>
         </Scrollbars>
       </div>
     );

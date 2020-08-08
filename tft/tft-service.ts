@@ -56,18 +56,25 @@ async function getUnits(serverNumber: number) {
                 players.sort((a: any,b: any) => {
                     return a.placement - b.placement;
                 });
+                const matchTopUnits: string[] = [];
                 for(let j = 0; j < topPlayers; j++) {
                     for(let k = 0; k < players[j].units.length; k++) {
-                        if(players[j].units[k].items.length >= 2 && (players[j].units[k].tier === 3 || (players[j].units[k].tier === 2 && players[j].units[k].rarity >= 2))) {
+                        //if(players[j].units[k].items.length >= 2 && (players[j].units[k].tier === 3 || (players[j].units[k].tier === 2 && players[j].units[k].rarity >= 2))) {
                             const unit: string = players[j].units[k].character_id.split('TFT3_')[1];
                             if(!units[unit]) {
-                                units[unit] = {win: 0, top: 0};
+                                units[unit] = {win: 0, top: 0, items: {}};
                             }
                             if(j === 0) {
                                 units[unit].win++;
                             }
-                            units[unit].top++;
-                        }
+                            if(!matchTopUnits.includes(unit)) {
+                                units[unit].top++;
+                                matchTopUnits.push(unit);
+                            }
+                            for(let a = 0; a < players[j].units[k].items.length; a++) {
+                                units[unit].items[players[j].units[k].items[a]] = units[unit].items[players[j].units[k].items[a]] ? units[unit].items[players[j].units[k].items[a]] + 1 : 1;
+                            }
+                        //}
                     }
                 }
             }
@@ -78,6 +85,14 @@ async function getUnits(serverNumber: number) {
         const unitsArray: any = [];
 
         for(let key in units) {
+            const items = [];
+            for(let itemKey in units[key].items) {
+                items.push({id: itemKey, count: units[key].items[itemKey], percent: (units[key].items[itemKey]/units[key].top*100).toFixed(0) + '%'});
+            }
+            items.sort((a: any,b: any) => {
+                return b.count - a.count;
+            });
+            units[key].items = items.slice(0, 3);
             units[key].win = (units[key].win/totalMatches*100).toFixed(2) + '%';
             units[key].top = (units[key].top/totalMatches*100).toFixed(2) + '%';
             units[key].unit = key;

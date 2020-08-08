@@ -9,6 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
+import server from '../constants/server';
 
 function createData(array, headers) {
     const obj = {};
@@ -178,15 +179,31 @@ export default function SpecialTable(props) {
             />
             <TableBody>
               {stableSort(rows, getComparator(order, orderBy))
-                .map((row, index) => {
+                .map(row => {
                   return (
                     <TableRow
-                      onClick={() => props.callback(row[primaryKey], row.Ticket)}
                       tabIndex={-1}
                       key={row[primaryKey]}
                     >
                         {
                             props.headers.map(header => {
+                              if(header === 'Unit') {
+                                return (<TableCell align="center" key={header}><div className="champion"><img className="champion-icon" src={server + '/champions/' + row[header].toLowerCase() + '.png'} alt="" /> {row[header]}</div></TableCell>);
+                              }
+                              if(header === 'Items') {
+                                return (<TableCell align="center" key={header}>
+                                  <div className="items">
+                                    {row[header].map(item => {
+                                      return(
+                                      <div className="item">
+                                        <img className="item-icon" key={item.id} src={server + '/items/' + (item.id > 9 ? item.id : '0' + item.id) + '.png'} alt="" />
+                                        <span>{item.percent}</span>
+                                      </div>
+                                      )
+                                    })}
+                                  </div>
+                                </TableCell>);
+                              }
                               return (<TableCell align="center" key={header}>{row[header]}</TableCell>);
                             })
                         }

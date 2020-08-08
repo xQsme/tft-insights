@@ -36,6 +36,7 @@ body{
 
 .app-container{
     max-width: 480px;
+    padding: 5px;
 }
 
 .center{
@@ -227,3 +228,39 @@ body{
         margin-top: -10px;
     }
 }
+
+td{
+    padding: 5px 0 !important;
+}
+
+.champion{
+    display: flex !important;
+    align-items: center;
+
+    .champion-icon{
+        width: 45px;
+        margin: 2px 15px 2px 7px;
+    }
+}
+
+.items{
+    display: flex !important;
+    justify-content: center;
+
+    .item{
+        display: flex;
+        flex-direction: column;
+        margin: 0 3px !important;
+    
+        .item-icon{
+            width: 35px;
+        }
+
+        span{
+            margin-bottom: -6px;
+        }
+    }
+}
+
+
+
