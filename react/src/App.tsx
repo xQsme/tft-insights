@@ -7,6 +7,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import SpecialTable from './components/special_table';
 import Button from '@material-ui/core/Button';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface AppState {
   requested: boolean,
@@ -29,22 +31,30 @@ class App extends Component <{}, AppState> {
   }
 
   componentDidMount() { 
-    this.requestUnits();
+    this.requestUnits(undefined);
   }
 
-  requestUnits = () => {
+  requestUnits = (item: any) => {
     const { value } = this.state;
-    axios.get(server + '/tft/units/' + value).then(response => {
-      console.log(response.data);
+    axios.get(server + '/tft/units/' + (item ? item : value)).then(response => {
       this.setState({...response.data, requested: true});
     }).catch(error => {
       this.setState({error: true});
+      toast('❌ Request Limit Reached!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     });
   }
 
   handleChange = (stuff: any, item: number) => {
     this.setState({value: item, requested: false});
-    this.requestUnits();
+    this.requestUnits(item);
   }
 
   render() { 
@@ -52,6 +62,7 @@ class App extends Component <{}, AppState> {
     
     return(
       <div className="App">
+        <ToastContainer />
         <Scrollbars
           autoHide
           className="scrollbar"
@@ -75,7 +86,7 @@ class App extends Component <{}, AppState> {
           </Tabs>
           {error ? (
             <div className="full-width">
-              <Button className="btn-main" variant="contained" color="primary" onClick={this.requestUnits}>Retry Request</Button>
+              <Button className="btn-main" variant="contained" color="primary" onClick={() => {this.setState({error: false, requested: false}); this.requestUnits(undefined);}}>Retry Request</Button>
               <p className="note">Request limit reached, please wait a bit before retrying.</p>
             </div>
           ) : (

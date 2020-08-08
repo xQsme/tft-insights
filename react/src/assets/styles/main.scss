@@ -35,7 +35,7 @@ body{
 }
 
 .app-container{
-    max-width: 640px;
+    max-width: 480px;
 }
 
 .center{
@@ -212,3 +212,18 @@ body{
       opacity: 1 !important;
     }
   }
+
+.Toastify__toast--default{
+    background-color: $secondarybg !important;
+    color: $text !important;
+    border-radius: 5px !important;
+    padding: 25px 15px !important;
+    svg{
+        color: $text;
+    }
+
+    .Toastify__close-button--default{
+        opacity: 0.7;
+        margin-top: -10px;
+    }
+}

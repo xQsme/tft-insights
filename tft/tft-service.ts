@@ -58,7 +58,7 @@ async function getUnits(serverNumber: number) {
                 });
                 for(let j = 0; j < topPlayers; j++) {
                     for(let k = 0; k < players[j].units.length; k++) {
-                        if(players[j].units[k].items.length >= 2 && (players[j].units[k].tier === 3 || (players[j].units[k].tier === 2 && players[j].units[k].rarity >= 3))) {
+                        if(players[j].units[k].items.length >= 2 && (players[j].units[k].tier === 3 || (players[j].units[k].tier === 2 && players[j].units[k].rarity >= 2))) {
                             const unit: string = players[j].units[k].character_id.split('TFT3_')[1];
                             if(!units[unit]) {
                                 units[unit] = {win: 0, top: 0};
