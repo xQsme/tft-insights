@@ -1,4 +1,6 @@
-# tft-insights
+# TFT Insights
+
+# ![TFT Insights](https://i.imgur.com/rayOXVk.png)
 
 ## How to run
 
