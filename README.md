@@ -17,4 +17,4 @@ Run `npm install` once to setup the dependencies.
 
 Start the server with `npm run dev`.
 
-Access the website at [localhost:8000](localhost:8000);
+Access the website at [localhost:8000](http://localhost:8000);
