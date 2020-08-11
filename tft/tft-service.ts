@@ -71,7 +71,9 @@ async function getUnits(serverNumber: number) {
                                 units[unit].top++;
                                 matchTopUnits.push(unit);
                                 for(let a = 0; a < players[j].units[k].items.length; a++) {
-                                    units[unit].items[players[j].units[k].items[a]] = units[unit].items[players[j].units[k].items[a]] ? units[unit].items[players[j].units[k].items[a]] + 1 : 1;
+                                    if(players[j].units[k].items[a] !== 999) {
+                                        units[unit].items[players[j].units[k].items[a]] = units[unit].items[players[j].units[k].items[a]] ? units[unit].items[players[j].units[k].items[a]] + 1 : 1;
+                                    }
                                 }
                             }
                         //}

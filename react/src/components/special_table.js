@@ -195,11 +195,11 @@ export default function SpecialTable(props) {
                                   <div className="items">
                                     {row[header].map(item => {
                                       return(
-                                      <div className="item" key={item.id}>
-                                        <img className="item-icon"  src={server + '/items/' + (item.id > 9 ? item.id : '0' + item.id) + '.png'} alt="" />
-                                        <span>{item.percent}</span>
-                                      </div>
-                                      )
+                                        <div className="item" key={item.id}>
+                                          <img className="item-icon"  src={server + '/items/' + (item.id > 9 ? item.id : '0' + item.id) + '.png'} alt="" />
+                                          <span>{item.percent}</span>
+                                        </div>
+                                      );
                                     })}
                                   </div>
                                 </TableCell>);
